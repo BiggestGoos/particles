@@ -40,3 +40,12 @@ class Particle:
     def apply_force(self, dt, f):
         acc = f * self.mass ** -1
         self.velocity += acc * dt
+
+    def bounding_box(self):
+        r = self.radius
+        p = self.position
+        corner_v = Vector(r,-r)
+        return p-corner_v, p+corner_v
+
+
+

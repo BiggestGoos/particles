@@ -11,17 +11,25 @@ def to_canvas_coords(canvas, u):
 
     return v
 
+def bounding_box_to_canvas_coords(canvas, bounding_box):
+    return (to_canvas_coords(canvas, bounding_box[0]), to_canvas_coords(canvas, bounding_box[1]))
+
+def move_oval_to(canvas, oval, u1, u2):
+    v1, v2 = bounding_box_to_canvas_coords(canvas, (u1, u2))
+    canvas.coords(o, v1.x, v1.y, v2.x, v2.y)
+
+def create_oval(canvas, particle):
+    v1, v2 = bounding_box_to_canvas_coords(canvas, particle.bounding_box())
+    return canvas.create_oval(v1.x, v1.y, v2.x, v2.y, fill="blue")
+
 root = Tk()
 
 canvas = Canvas(root, bg="white", width = 800, height = 600)
 canvas.pack()
 
-p1 = to_canvas_coords(canvas, Vector(-2.5,-2.5))
-p2 = to_canvas_coords(canvas, Vector(2.5,2.5))
 
-print(p1, " : ", p2)
+particle1 = Particle(1,Vector(0,0),Vector(0,0),2)
 
-o = canvas.create_oval(p1.x - 0.05, p1.y - 0.05, p1.x + 0.05, p1.y + 0.05, fill="blue")
-o = canvas.create_oval(p2.x - 0.05, p2.y - 0.05, p2.x + 0.05, p2.y + 0.05, fill="blue")
+o = create_oval(canvas, particle1)
 
 _ = input()
