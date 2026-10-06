@@ -15,6 +15,9 @@ class Vector:
     def __sub__(self, other):
         return Vector(self.x - other.x, self.y - other.y)
 
+    def __mul__(self, other):
+        return Vector(self.x * other.x, self.y * other.y)
+
     def norm(self):
         return (self.x ** 2 + self.y ** 2) ** 0.5
 
@@ -37,4 +40,3 @@ class Particle:
     def apply_force(self, dt, f):
         acc = f * self.mass ** -1
         self.velocity += acc * dt
-
