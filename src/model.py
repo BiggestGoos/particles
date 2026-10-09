@@ -37,15 +37,12 @@ class Particle:
     def intertial_move(self, dt):
         self.position += dt * self.velocity
 
-    def apply_force(self, dt, f):
-        acc = f * self.mass ** -1
-        self.velocity += acc * dt
+    def apply_force(self, dt, f: Vec):
+        acc = (self.mass ** -1) * f
+        self.velocity += dt * acc
 
     def bounding_box(self):
         r = self.radius
         p = self.position
         corner_v = Vec(r,-r)
         return p-corner_v, p+corner_v
-
-
-
