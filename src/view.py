@@ -42,7 +42,7 @@ def simulation_loop(f, timestep, particles):
     while True:
         f(timestep, particles)
         for p in particle_pairs:
-            p[1].intertial_move(timestep)
+            p[1].inertial_move(timestep)
 
             move_oval_to(canvas, p[0], *p[1].bounding_box())
 

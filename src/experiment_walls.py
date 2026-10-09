@@ -6,7 +6,7 @@ particles = []
 for i in range(n):
     theta = i*2*math.pi/n
     u = Vec(math.cos(theta),math.sin(theta))
-    pos = 10 * u
+    pos = 9 * u
     vel = -1 * u
     particles.append(Particle(1,pos,vel,0.2))
 

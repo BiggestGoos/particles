@@ -21,7 +21,7 @@ class Vec:
     def norm(self):
         return (self.x ** 2 + self.y ** 2) ** 0.5
 
-    def get_chords(self):
+    def get_coords(self):
         return self.x, self.y
 
 def dot(u, v):
@@ -34,10 +34,10 @@ class Particle:
         self.velocity = velocity
         self.radius = radius
 
-    def intertial_move(self, dt):
+    def inertial_move(self, dt):
         self.position += dt * self.velocity
 
-    def apply_force(self, dt, f: Vec):
+    def apply_force(self, dt, f):
         acc = (self.mass ** -1) * f
         self.velocity += dt * acc
 
