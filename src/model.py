@@ -1,4 +1,4 @@
-class Vector:
+class Vec:
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -7,16 +7,16 @@ class Vector:
         return f'({self.x}, {self.y})'
 
     def __rmul__(self, factor):
-        return Vector(self.x * factor, self.y * factor)
+        return Vec(self.x * factor, self.y * factor)
 
     def __add__(self, other):
-        return Vector(self.x + other.x, self.y + other.y)
+        return Vec(self.x + other.x, self.y + other.y)
 
     def __sub__(self, other):
-        return Vector(self.x - other.x, self.y - other.y)
+        return Vec(self.x - other.x, self.y - other.y)
 
-    def __mul__(self, other):
-        return Vector(self.x * other.x, self.y * other.y)
+    def vec_mul(self, other):
+        return Vec(self.x * other.x, self.y * other.y)
 
     def norm(self):
         return (self.x ** 2 + self.y ** 2) ** 0.5
@@ -35,7 +35,7 @@ class Particle:
         self.radius = radius
 
     def intertial_move(self, dt):
-        self.position += self.velocity * dt
+        self.position += dt * self.velocity
 
     def apply_force(self, dt, f):
         acc = f * self.mass ** -1
@@ -44,7 +44,7 @@ class Particle:
     def bounding_box(self):
         r = self.radius
         p = self.position
-        corner_v = Vector(r,-r)
+        corner_v = Vec(r,-r)
         return p-corner_v, p+corner_v
 
 
